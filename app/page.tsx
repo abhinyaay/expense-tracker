@@ -15,6 +15,24 @@ export default function Home() {
     }
   }, [status, router]);
 
+  // Show error message if there's an authentication error
+  if (status === 'error') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-red-50">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-red-600 mb-4">Authentication Error</h1>
+          <p className="text-red-500 mb-4">There was an issue with the authentication system.</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="btn-primary"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (status === 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center">
